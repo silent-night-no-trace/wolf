@@ -96,14 +96,14 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:5060/login",//路径配置需要修改
+            url: "http://47.97.160.31:5060/login",//路径配置需要修改
             data: $('#signupForm').serialize(),
             success: function (r) {
                 if (r.code == 0) {
                     var index = layer.load(1, {
                         shade: [0.1,'#fff'] //0.1透明度的白色背景
                     });
-                    parent.location.href = 'http://127.0.0.1:5060/index';
+                    parent.location.href = '/index';
                 } else {
                     layer.msg(r.msg);
                 }
