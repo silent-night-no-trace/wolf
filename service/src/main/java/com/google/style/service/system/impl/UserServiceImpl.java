@@ -132,10 +132,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int resetPwd(UserVO userVO,User user) throws Exception {
 		if(Objects.equals(userVO.getUser().getId(),user.getId())){
+		    //密码 匹配  用户名加密码 MD5
+			if(Objects.equals(Md5Utils.encrypt(user.getUsername(),userVO.getPwd()),user.getPassword())){
 
-			if(Objects.equals(MD5Utils.encrypt(userVO.getUser().getUsername(),userVO.getPwd()),user.getPassword())){
-
-                user.setPassword(MD5Utils.encrypt(user.getUsername(),userVO.getNewPwd()));
+                user.setPassword(Md5Utils.encrypt(user.getUsername(),userVO.getNewPwd()));
 				return userMapper.update(user);
 			}else{
 				throw new Exception("输入的旧密码有误！");
@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserService {
 			throw new Exception("超级管理员的账号不允许直接重置！");
 		}
 		//前端提交用户信息  将提交的密码 存储到数据库  MD5
-        user.setPassword(MD5Utils.encrypt(user.getUsername(), userVO.getNewPwd()));
+        user.setPassword(Md5Utils.encrypt(user.getUsername(), userVO.getNewPwd()));
 		return userMapper.update(user);
 
 
@@ -254,4 +254,8 @@ public class UserServiceImpl implements UserService {
 		return result;
     }
 
+    public static void main(String[] args) {
+        System.out.println("------传入后生成密码-----------"+Md5Utils.encrypt("admin","111111"));
+
+    }
 }

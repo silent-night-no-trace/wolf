@@ -12,7 +12,7 @@ import com.google.style.model.system.UserVO;
 import com.google.style.service.system.RoleService;
 import com.google.style.service.system.UserService;
 import com.google.style.service.tools.DictService;
-import com.google.style.utils.MD5Utils;
+import com.google.style.utils.Md5Utils;
 import com.google.style.utils.PageUtils;
 import com.google.style.utils.Query;
 import com.google.style.utils.R;
@@ -88,7 +88,7 @@ public class UserController extends BaseController {
 		if (Global.DEMO_ACCOUNT.equals(getUsername())) {
 			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
 		}
-		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
+		user.setPassword(Md5Utils.encrypt(user.getUsername(), user.getPassword()));
 		if (userService.save(user) > 0) {
 			return R.ok();
 		}

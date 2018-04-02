@@ -123,17 +123,17 @@ $(document).ready(function(){
 		 debug:false, //表示校验通过后是否直接提交表单
 		 onkeyup:false, //表示按键松开时候监听验证
 		rules:{
-			pwdOld:{
+            pwd:{
 				required:true,
 				minlength:6
 			},
-            pwdNew:{
+            newPwd:{
 			   required:true,
 			   minlength:6,
 			   isdiff:true,
 			   //issame:true,
 		   },
-			confirm_password:{
+            confirm_password:{
 			  required:true,
 			  minlength:6,
 			  issame:true,
@@ -141,17 +141,17 @@ $(document).ready(function(){
 		  
 		   },
 		messages:{
-			 	pwdOld : {
+            	pwd : {
 					 required:'必填',
 					 minlength:$.validator.format('密码长度要大于6')
 				},
-            	pwdNew:{
+            	newPwd:{
 				   required:'必填',
 				   minlength:$.validator.format('密码长度要大于6'),
 				   isdiff:'原密码与新密码不能重复',
 				  
 			   },
-				confirm_password:{
+            	confirm_password:{
 				   required:'必填',
 				   minlength:$.validator.format('密码长度要大于6'),
 				   issame:'新密码要与确认新密码一致',

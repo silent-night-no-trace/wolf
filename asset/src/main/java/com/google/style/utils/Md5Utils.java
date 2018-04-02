@@ -3,7 +3,11 @@ package com.google.style.utils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
-public class MD5Utils {
+/**
+ * @author liangz
+ * @date 2018/04/02 15:40
+ */
+public class Md5Utils {
 	private static final String SALT = "1qazxsw2";
 
 	private static final String ALGORITH_NAME = "md5";
