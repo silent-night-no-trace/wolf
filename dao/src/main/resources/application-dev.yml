@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: dao #应用名称,与application.properities中保持一致
+  session:
+    store-type: none
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    validation-query: SELECT 1 FROM DUAL
+    max-open-prepared-statements: 20
+    test-while-idle: true
+     # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    time-between-eviction-runs-millis: 60000
+    max-wait: 60000
+     # 初始化大小，最小，最大
+    max-active: 20
+    min-idle: 5
+     # 配置一个连接在池中最小生存的时间，单位是毫秒
+    min-evictable-idle-time-millis: 300000
+     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+ #mybatis
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true  #表字段自动映射-驼峰
+    useColumnLabel: true
+#发布端口配置
+server:
+  port: 5003  #Tomcat端口
+  max-http-header-size: 4194304
+  tomcat:
+    max-http-post-size: 0
+

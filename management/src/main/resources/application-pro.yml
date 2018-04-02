@@ -1,0 +1,92 @@
+
+#Freemark 配置 prefix: classpath:/templates/#
+#spring:
+#  freemarker:
+#    request-context-attribute: req  #req访问request
+#    suffix: .html  #后缀名
+#    content-type: text/html
+#    enabled: true
+#    cache: false #缓存配置
+#    template-loader-path: classpath:/templates/
+#    charset: UTF-8 #编码格式
+#    settings:
+#      number_format: '0.##'   #数字格式化，无小数点
+
+
+
+
+
+#上传路径配置
+Style:
+  uploadPath: /usr/local/develope/uploadImgs/
+
+
+#发布端口配置
+server:
+  port: 5060  #Tomcat端口
+  session-timeout: 1800
+  max-http-header-size: 4194304
+  tomcat:
+    max-http-post-size: 0
+
+spring:
+  application:
+    name: manage #应用名称,与application.properities中保持一致
+  session:
+    store-type: none
+    #thymeleaf 配置
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    suffix: .html
+    content-type: text/html
+    encoding: utf-8
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/style?characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    validation-query: SELECT 1 FROM DUAL
+    max-open-prepared-statements: 20
+    test-while-idle: true
+     # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    time-between-eviction-runs-millis: 60000
+    max-wait: 60000
+     # 初始化大小，最小，最大
+    max-active: 20
+    min-idle: 5
+     # 配置一个连接在池中最小生存的时间，单位是毫秒
+    min-evictable-idle-time-millis: 300000
+     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  redis:
+    host: localhost
+    port: 6379
+    password:
+         # 连接超时时间（毫秒）
+    timeout: 10000
+    pool:
+      # 连接池中的最大空闲连接
+      max-idle: 8
+        # 连接池中的最小空闲连接
+      min-idle: 10
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 100
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+ #mybatis
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true  #表字段自动映射-驼峰
+    useColumnLabel: true
+
+#配置缓存和session存储方式，默认ehcache,可选redis
+cacheType: redis
