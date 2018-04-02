@@ -55,10 +55,9 @@
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
                 <p class="m-t-md text-center">欢迎登录Style后台管理系统</p>
-                <input type="text" name="username" class="form-control uname"
-                       value="admin"/>
+                <input type="text" name="username" class="form-control uname"/>
                 <input type="password" name="password"
-                       class="form-control pword m-b" value="111111"/>
+                       class="form-control pword m-b" />
                 <a id="login" class="btn btn-login btn-block">登录</a>
             </form>
         </div>
@@ -97,14 +96,14 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: "http://47.97.160.31:5060/login",
+            url: "http://47.97.160.31:5060/login",//路径配置需要修改
             data: $('#signupForm').serialize(),
             success: function (r) {
                 if (r.code == 0) {
                     var index = layer.load(1, {
                         shade: [0.1,'#fff'] //0.1透明度的白色背景
                     });
-                    parent.location.href = '/index';
+                    parent.location.href = 'http://47.97.160.31:5060/index';
                 } else {
                     layer.msg(r.msg);
                 }
