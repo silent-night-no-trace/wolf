@@ -38,9 +38,9 @@ $(document).ready(function(){
 		return this.optional(element) || (birth).test(value);
 	},"出生日期格式示例2000-01-01");
 	//校验新旧密码是否相同
-	jQuery.validator.addMethod("isdiff",function(){
-		var p1=$("#pwdOld").val();
-		var p2=$("#pwdNew").val();
+	jQuery.validator.addMethod("isDiff",function(){
+		var p1=$("#pwd").val();
+		var p2=$("#newPwd").val();
 		if(p1==p2){
 			return false;
 		}else{
@@ -48,9 +48,9 @@ $(document).ready(function(){
 		}
 		});
 	//校验新密码和确认密码是否相同
-	jQuery.validator.addMethod("issame",function(){
+	jQuery.validator.addMethod("isSame",function(){
 		var p3=$("#confirm_password").val();
-		var p4=$("#pwdNew").val();
+		var p4=$("#newPwd").val();
 		if(p3==p4){
 			return true;
 		}else{
@@ -67,7 +67,7 @@ $(document).ready(function(){
 				isName:true
 			},
 			sex:"required",
-			birth:"required",
+			// birth:"required",
             mobile:{
 				required:true,
 				isPhone:true
@@ -85,9 +85,9 @@ $(document).ready(function(){
 			sex:{
 				required:"请输入性别"
 			},
-			birth:{
-				required:"请输入出生年月"
-			},
+			// birth:{
+			// 	required:"请输入出生年月"
+			// },
             mobile:{
 				required:"请输入手机号",
 				isPhone:"请填写正确的11位手机号"
@@ -130,13 +130,12 @@ $(document).ready(function(){
             newPwd:{
 			   required:true,
 			   minlength:6,
-			   isdiff:true,
-			   //issame:true,
+			   isDiff:true,
 		   },
             confirm_password:{
 			  required:true,
 			  minlength:6,
-			  issame:true,
+              isSame:true,
 			}
 		  
 		   },
@@ -148,13 +147,13 @@ $(document).ready(function(){
             	newPwd:{
 				   required:'必填',
 				   minlength:$.validator.format('密码长度要大于6'),
-				   isdiff:'原密码与新密码不能重复',
+				   isDiff:'原密码与新密码不能重复',
 				  
 			   },
             	confirm_password:{
 				   required:'必填',
 				   minlength:$.validator.format('密码长度要大于6'),
-				   issame:'新密码要与确认新密码一致',
+                   isSame: "新密码要与确认新密码一致",
 				}
 		
 		},
